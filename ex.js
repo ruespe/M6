@@ -1,8 +1,5 @@
 
 //! NO USAR .inner.html usar createElement 
-/**
- * @author Rubén
- */
 // 1. Crea un script que comprovi si una variable és del tipus Number, en cas afirmatiu s'ha d'arrodonir a 2
 //decimals i mostrar-la per la consola, en cas contrari mostrar el tipus per la consola
 
@@ -157,7 +154,7 @@ let menuItems = ['home', 'about', 'products', 'contact'];
 let ul = document.createElement("ul");
 
 menuItems.forEach(item => {
-    ul.insertAdjacentElement("beforeend", `<li><a href="#${item}">${item}</a></li>`);
+    ul.insertAdjacentHTML("beforeend", `<li><a href="#${item}">${item}</a></li>`);
 });
 
 menu.appendChild(ul);
