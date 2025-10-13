@@ -44,12 +44,10 @@ products.forEach(([codi, imatge, descripcio, precio,]) => {
          <td class="quantitat"><input type="number" value="1"></td>
          <td>${precio}</td>
          <td>${precio}</td>
-         <td>❌</td>
+         <td><img class="borrar" src="/images/eliminar.png"></td>
          </tr>
       `
    tbody.insertAdjacentHTML("beforeend", fila)
-   // tbody.insertAdjacentHTML("beforeend", DOMPurify.sanitize(fila))
-   // Sin sentido ya que no puden estar infectadas y borra los elementos PREGUNTAR
 })
 
 //4. Crea una fila més per a l'import total
@@ -63,7 +61,6 @@ const filaImportTotal = `
 tbody.insertAdjacentHTML("beforeend", filaImportTotal)
 
 // 5. Afegeix un botó per buidar el carretó
-// crear nueva fila ??? PREGUNTAR
 const crearBoton = `
    <tr>   
    <td><button id="vaciar">Buidar Carretó</button></td>
@@ -74,7 +71,16 @@ tbody.insertAdjacentHTML("beforeend", crearBoton)
 table.appendChild(tbody)
 
 // 6. Quan es clica la icona eliminar l'element <tr> pare se suprimeix del DOM
+iconoBorrar = document.querySelectorAll(".borrar")
+console.log(iconoBorrar)
 
+ iconoBorrar.forEach(item => {
+    item.addEventListener("click", e => {
+       const tr = e.target.closest("tr")
+       tr.remove()
+    })
+
+ })
 
 // 7. Quan es clica el botó Buidar carretó tota la taula desapareix i es mostra:
 
@@ -87,3 +93,6 @@ boton.addEventListener("click", () => {
    `
    document.body.insertAdjacentHTML("beforeend", parrafo)
 })
+
+// 8. 
+
