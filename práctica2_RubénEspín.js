@@ -23,6 +23,7 @@ document.querySelector("main").appendChild(table)
 //El contingut de la cel·la preu és un <input type="number"> que accepta valors enters entre 0 i 10i té com a valor per defecte 1.
 //La cel·la import inicialment té el mateix valor que la cel·la preu. Posteriorment serà el valor calculat.
 // Creación del resto de la table
+
 // 3. Crea una columna més per a les icones d'eliminar
 
 tbody = document.createElement("tbody")
@@ -94,5 +95,4 @@ boton.addEventListener("click", () => {
    document.body.insertAdjacentHTML("beforeend", parrafo)
 })
 
-// 8. 
 
