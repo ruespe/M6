@@ -5,7 +5,7 @@
 const arr1 = [1, 3, 5];
 let arr2 = arr1;
 arr2[0] = 3;
-console.log("Valor de arr1 modificado a través de arr2: ",arr1)
+console.log("Valor de arr1 modificado a través de arr2: ", arr1);
 
 //Para hacerlo correcto habria que usar otro método, así ya no apuntan a la misma dirección
 const arr3 = [1, 3, 5];
