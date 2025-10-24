@@ -2,7 +2,25 @@
 // Fes-ho de manera que l'script funcioni per a qualsevol array bidimensional, per exemple: 2x3. 4x4,
 // 5x2, etc. sense fer cap modificació
 
+let filas = 3;
+let columnas = 3;
 
+function crearArrayBidimensional(filas, columnas) {
+  let totalNumeros = filas * columnas;
+  let numeros = [];
+
+  while (numeros.length < totalNumeros) {
+    let num = Math.floor(Math.random() * 29) + 1;
+    if (!numeros.includes(num)) {
+      numeros.push(num);
+    }
+  }
+
+  
+  const arrayBidimensional = [];
+
+
+}
 
 // 26. A l'array anterior, fes que:
 // 1. La primera columna contingui els números entre 1 i 9
