@@ -20,4 +20,5 @@ for (let i = 0; i < 3; i++) {
   }
 }
 
+//let casillasNegras = Math.floor(Math.random()* )
 //console.log(numRand)
