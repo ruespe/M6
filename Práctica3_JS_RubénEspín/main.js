@@ -1,3 +1,4 @@
+
 let containerBingo = document.body.querySelector("#bingo");
 
 let table = document.createElement("table");
@@ -6,7 +7,6 @@ containerBingo.append(table);
 let tbody = document.createElement("tbody");
 table.append(tbody);
 
-// Crear tabla 3x9 con números por decenas
 for (let i = 0; i < 3; i++) {
   let tr = document.createElement("tr");
   tbody.append(tr);
@@ -15,17 +15,15 @@ for (let i = 0; i < 3; i++) {
     let min = j * 10 + 1;
     let max;
     if (j === 0) {
-      max = 9; // columna 0: 1-9
+      max = 9; 
     } else {
-      max = j * 10 + 9; // columnas 1-8
+      max = j * 10 + 9; 
     }
-
     let numRand = Math.floor(Math.random() * (max - min + 1)) + min;
     tr.insertAdjacentHTML("beforeend", `<td>${numRand}</td>`);
   }
 }
 
-// Añadir 4 casillas negras por fila
 let filas = Array.from(document.querySelectorAll("tr"));
 filas.forEach(fila => {
   let tds = Array.from(fila.querySelectorAll("td"));
@@ -39,18 +37,9 @@ filas.forEach(fila => {
   }
 });
 
-// Evitar columnas con 3 negras o 3 blancas
 for (let col = 0; col < 9; col++) {
   let negros = 0;
   let celdasCol = [];
-
-  for (let fila = 0; fila < 3; fila++) {
-    let celda = filas[fila].querySelectorAll("td")[col];
-    celdasCol.push(celda);
-    if (celda.classList.contains("cuadrado-negro")) {
-      negros++;
-    }
-  }
 
   if (negros === 3) {
     let rand = Math.floor(Math.random() * 3);
@@ -63,7 +52,6 @@ for (let col = 0; col < 9; col++) {
   }
 }
 
-// Ordenar filas alternando ascendente/descendente por columna
 for (let col = 0; col < 9; col++) {
   let numerosCol = [];
   let celdasCol = [];
@@ -76,11 +64,10 @@ for (let col = 0; col < 9; col++) {
     }
   }
 
-  // Ordenar según la fila
   if (col === 1) {
-    numerosCol.sort(function(a, b) { return b - a; }); // descendente
+    numerosCol.sort(function(a, b) { return b - a; });
   } else {
-    numerosCol.sort(function(a, b) { return a - b; }); // ascendente
+    numerosCol.sort(function(a, b) { return a - b; });
   }
 
   let index = 0;
@@ -93,54 +80,114 @@ for (let col = 0; col < 9; col++) {
   }
 }
 
-
-/// todo los demas
-
-
-// Crear array con todas las bolas del 1 al 90
 let bolas = [];
 for (let n = 1; n <= 90; n++) {
   bolas.push(n);
 }
 
-// Crear contenedor para mostrar bolas extraídas
 let bolasExtraidasDiv = document.createElement("div");
 bolasExtraidasDiv.id = "bolas-extraidas";
 containerBingo.append(bolasExtraidasDiv);
 
-// Crear botón para extraer bolas
 let extraerBtn = document.createElement("button");
 extraerBtn.textContent = "Extraer bola";
 containerBingo.append(extraerBtn);
 
 let lineaCompletada = false;
 
-extraerBtn.addEventListener("click", () => {
+function guardarEstado() {
+  let estado = {
+    carton: [],
+    bolasExtraidas: [],
+    lineaCompletada: lineaCompletada
+  };
+
+  filas.forEach(function(fila) {
+    let filaDatos = [];
+    fila.querySelectorAll("td").forEach(function(td) {
+      filaDatos.push({
+        numero: Number(td.textContent),
+        negra: td.classList.contains("cuadrado-negro"),
+        marcada: td.classList.contains("marcado")
+      });
+    });
+    estado.carton.push(filaDatos);
+  });
+
+  let bolasP = bolasExtraidasDiv.querySelectorAll("p");
+  bolasP.forEach(function(p) {
+    estado.bolasExtraidas.push(Number(p.textContent));
+  });
+
+  localStorage.setItem("bingoEstado", JSON.stringify(estado));
+}
+
+function cargarEstado() {
+  let estadoStr = localStorage.getItem("bingoEstado");
+  if (!estadoStr) return false;
+
+  let estado = JSON.parse(estadoStr);
+  lineaCompletada = estado.lineaCompletada;
+
+  filas.forEach(function(fila, i) {
+    fila.querySelectorAll("td").forEach(function(td, j) {
+      td.textContent = estado.carton[i][j].numero;
+      if (estado.carton[i][j].negra) {
+        td.classList.add("cuadrado-negro");
+      } else {
+        td.classList.remove("cuadrado-negro");
+      }
+      if (estado.carton[i][j].marcada) {
+        td.classList.add("marcado");
+      } else {
+        td.classList.remove("marcado");
+      }
+    });
+  });
+
+  bolasExtraidasDiv.innerHTML = "";
+  estado.bolasExtraidas.forEach(function(bola) {
+    let p = document.createElement("p");
+    p.textContent = bola + " ";
+    bolasExtraidasDiv.prepend(p);
+
+    let index = bolas.indexOf(bola);
+    if (index !== -1) {
+      bolas.splice(index, 1);
+    }
+  });
+
+  return true;
+}
+
+cargarEstado();
+
+extraerBtn.addEventListener("click", function() {
   if (bolas.length === 0) return;
 
-  // Sacar bola aleatoria
   let indice = Math.floor(Math.random() * bolas.length);
   let bola = bolas.splice(indice, 1)[0];
 
-  // Mostrar bola extraída (última a la izquierda)
   let p = document.createElement("p");
   p.textContent = bola + " ";
   bolasExtraidasDiv.prepend(p);
 
-  // Marcar en el cartón
-  filas.forEach(fila => {
-    fila.querySelectorAll("td").forEach(td => {
+  filas.forEach(function(fila) {
+    fila.querySelectorAll("td").forEach(function(td) {
       if (!td.classList.contains("cuadrado-negro") && Number(td.textContent) === bola) {
         td.classList.add("marcado");
       }
     });
   });
 
-  // Comprobar si se completa alguna línea (solo la primera vez)
   if (!lineaCompletada) {
-    filas.forEach(fila => {
-      let tds = Array.from(fila.querySelectorAll("td")).filter(td => !td.classList.contains("cuadrado-negro"));
-      let todosMarcados = tds.every(td => td.classList.contains("marcado"));
+    filas.forEach(function(fila) {
+      let tds = Array.from(fila.querySelectorAll("td")).filter(function(td) {
+        return !td.classList.contains("cuadrado-negro");
+      });
+      let todosMarcados = tds.every(function(td) {
+        return td.classList.contains("marcado");
+      });
       if (todosMarcados) {
         alert("¡Línea completada!");
         lineaCompletada = true;
@@ -148,15 +195,19 @@ extraerBtn.addEventListener("click", () => {
     });
   }
 
-  // Comprobar si se completa el bingo
-  let todasMarcadas = filas.every(fila => {
-    let tds = Array.from(fila.querySelectorAll("td")).filter(td => !td.classList.contains("cuadrado-negro"));
-    return tds.every(td => td.classList.contains("marcado"));
+  let todasMarcadas = filas.every(function(fila) {
+    let tds = Array.from(fila.querySelectorAll("td")).filter(function(td) {
+      return !td.classList.contains("cuadrado-negro");
+    });
+    return tds.every(function(td) {
+      return td.classList.contains("marcado");
+    });
   });
 
   if (todasMarcadas) {
     alert("BINGOOOO");
     extraerBtn.remove();
   }
-});
 
+  guardarEstado();
+});
