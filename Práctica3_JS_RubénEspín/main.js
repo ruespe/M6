@@ -1,50 +1,4 @@
-let containerBingo = document.body.querySelector("#bingo");
 
-
-let table = document.createElement("table");
-
-
-containerBingo.append(table);
-
-
-let tbody = document.createElement("tbody");
-table.append(tbody);
-
-
-for (let i = 0; i < 3; i++) {
-  let tr = document.createElement("tr");
-  tbody.append(tr);
-
-
-  for (let j = 0; j < 9; j++) {
-    let min = j * 10 + 1;
-    let max = j * 10 + 9;
-    let numRand = Math.floor(Math.random() * (max - min + 1)) + min;
-    tr.insertAdjacentHTML("beforeend", `<td>${numRand}</td>`);
-    //console.log(numRand);
-  }
-
-
-}
-let filas = document.body.querySelectorAll("tr");
-filas.forEach(fila => {
-  let tds = Array.from(fila.querySelectorAll("td"));
-  let restantes = [...tds];
-  let total = 4;
-
-
-  for (let k = 0; k < total; k++) {
-    let randomIndex = Math.floor(Math.random() * restantes.length);
-    restantes[randomIndex].classList.add("cuadrado-negro");
-    restantes.splice(randomIndex, 1);
-  }
-  for (let c = 0; c < 9; c++) {
-  let celda = filas[0].querySelectorAll("td")[c];
-  console.log(celda);
-}
-
-
-});
 let containerBingo = document.body.querySelector("#bingo");
 
 let table = document.createElement("table");
@@ -104,27 +58,25 @@ for (let col = 0; col < 9; col++) {
   }
 }
 
-// Ordenar columnas alternando asc/desc
-for (let col = 0; col < 9; col++) {
-  // recoger las tres celdas con número (no negras)
-  let celdas = [];
-  for (let fila = 0; fila < 3; fila++) {
-    let celda = filas[fila].querySelectorAll("td")[col];
-    if (!celda.classList.contains("cuadrado-negro")) {
-      celdas.push(celda);
-    }
+// Ordenar las filas alternando ascendente/descendente
+for (let i = 0; i < filas.length; i++) {
+  let celdas = Array.from(filas[i].querySelectorAll("td"))
+    .filter(td => !td.classList.contains("cuadrado-negro"));
+
+  // Extraer los números
+  let nums = celdas.map(td => Number(td.textContent));
+
+  // Ordenar según el número de fila
+  if (i === 1) {
+    // 2ª fila descendente
+    nums.sort((a, b) => b - a);
+  } else {
+    // 1ª y 3ª fila ascendentes
+    nums.sort((a, b) => a - b);
   }
 
-  // obtener los números
-  let nums = celdas.map(c => Number(c.textContent));
-
-  // decidir si asc o desc
-  let asc = col % 2 === 0; // pares asc, impares desc
-
-  nums.sort((a, b) => asc ? a - b : b - a);
-
-  // volver a poner los números ordenados
-  for (let i = 0; i < celdas.length; i++) {
-    celdas[i].textContent = nums[i];
+  // Volver a colocar los números ordenados
+  for (let j = 0; j < celdas.length; j++) {
+    celdas[j].textContent = nums[j];
   }
 }
