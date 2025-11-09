@@ -1,5 +1,6 @@
 .cuadrado-negro{
     background-color: black;
+    color: transparent;
 }
 td{
     border: 1px solid black;
@@ -7,4 +8,18 @@ td{
     text-align: center;
     width: 30px;
     height: 30px;
+}
+
+div#bolas-extraidas{
+    display: flex;
+    gap: 10px;
+}
+div#bolas-extraidas p{
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+.marcado{
+    background-color: yellow;
 }
