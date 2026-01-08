@@ -1,3 +1,4 @@
+
 const imageList = [
   "hp-105716.jpg",
   "lenovo-10.jpg",
@@ -26,18 +27,31 @@ const imageList = [
   "hp-911487.jpg",
 ];
 
-document.addEventListener(
-  imageList.forEach((linea) => {
-    const [nom, codi, formato] = linea.split("-");
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Transformar array, a array de objetos
+  const nuevaImageList = imageList.map(linea => {
+    const [nom, codi] = linea.split("-");
     const numero = codi.split(".")[0];
-    const jpg = formato
+    return {nom, codi: Number(numero)};
 
-    const nuevaImageList = {
-      nom: nom,
-      codi: Number(numero),
-      formato: jpg,
-    };
-      console.log(nuevaImageList)
+  });
+    console.log(nuevaImageList)
 
-  }),
-);
+    // Ordenar descendentemente
+    nuevaImageList.sort((a, b) => b.codi - a.codi);
+
+  const div = document.createElement("div");
+  document.body.appendChild(div);
+
+  // Usar el template strings para mostrar cada objeto
+  nuevaImageList.forEach(item => {
+    div.insertAdjacentHTML(
+      "beforeend",
+      `<p>${item.nom} - ${item.codi}</p>`
+    );
+  });
+
+
+
+});
