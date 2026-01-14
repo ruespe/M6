@@ -38,13 +38,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Ordenar descendentemente
   nuevaImageList.sort((a, b) => b.codi - a.codi);
 
-  const div = document.createElement("div");
-  div.classList.add("lista");
-  document.body.appendChild(div);
+  const divLista = document.createElement("div");
+  divLista.classList.add("lista");
+  document.body.appendChild(divLista);
 
   // Usar el template strings para mostrar cada objeto
   nuevaImageList.forEach((item) => {
-    div.insertAdjacentHTML("beforeend", `<p>${item.nom} - ${item.codi}</p>`);
+    divLista.insertAdjacentHTML("beforeend", `<p>${item.nom} - ${item.codi}</p>`);
   });
 
   const botonSaveData = document.createElement("button");
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2.Guardar fecha actual
     //5. La data ha d'incloure dia, mes, any i l'hora (hora,minuts,segons)
-    let fechaActual = new Date().toLocaleString();
+    let fechaActual = new Date().toString();
     console.log(fechaActual);
 
     // 4.Guardar en una sola clave y en JSON
@@ -76,9 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     );
 
-    // Recuperar de LocalStorage
-    let datosGuardados = JSON.parse(localStorage.getItem("datos"));
-    console.log("Datos recuperados", datosGuardados);
 
     //6. Quan es prem el botó Save Data s'elimina la llista creada en el punt 1
     const lista = document.querySelector(".lista");
@@ -105,6 +102,31 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2. La mida de les imatges serà de 100px establert com a propietat de l'element <img>
 
   // 4. Data i hora que s’han desat a localStorage.
+ 
+  // 5. El document HTML inicial només conté els elements <body> i <h1> la resta es generen mitjançant l'script
 
-  botonMostrar.addEventListener("click", () => {});
+    // Recuperar de LocalStorage
+  botonMostrar.addEventListener("click", () => {
+    let divProducto = document.createElement("div")
+
+    let datosGuardados = JSON.parse(localStorage.getItem("datos"));
+    console.log("Datos recuperados", datosGuardados);
+
+    datosGuardados.productos.forEach((item) => {
+      contenido = `
+      y">
+ <h1>Prova pràctica UF1</h1>
+ <!--ELEMENTS QUE S'HAN DE GENERAR-->
+ <div>
+ <h2>${item.nom.toUpperCase()}-${item.codi}</h2>
+ <img src="/imatges">
+ </div>
+ <!--FINAL-->
+</body>
+      `;
+      divProducto.insertAdjacentHTML("beforeend", contenido);
+
+    });
+    document.body.appendChild(divProducto)
+  });
 });
