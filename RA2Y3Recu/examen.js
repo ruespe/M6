@@ -27,6 +27,10 @@ const imageList = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  let titulo =  "<h1>Prova pràctica UF1</h1>";
+  document.body.insertAdjacentHTML("beforeend", titulo);
+
   // Transformar array, a array de objetos
   const nuevaImageList = imageList.map((linea) => {
     const [nom, codi] = linea.split("-");
@@ -102,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2. La mida de les imatges serà de 100px establert com a propietat de l'element <img>
 
   // 4. Data i hora que s’han desat a localStorage.
- 
+
   // 5. El document HTML inicial només conté els elements <body> i <h1> la resta es generen mitjançant l'script
 
     // Recuperar de LocalStorage
@@ -114,12 +118,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     datosGuardados.productos.forEach((item) => {
       contenido = `
-      y">
- <h1>Prova pràctica UF1</h1>
  <!--ELEMENTS QUE S'HAN DE GENERAR-->
  <div>
  <h2>${item.nom.toUpperCase()}-${item.codi}</h2>
- <img src="/imatges">
+ <img src="imatges/${item.nom}-${item.codi}.jpg" style="width: 100px;">
  </div>
  <!--FINAL-->
 </body>
@@ -130,3 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(divProducto)
   });
 });
+
+
+//4. Quan es fa doble click sobre una imatge: (3 punts)
+  // 1. S'elimina el producte i es substitueix per una altre que sigui diferent dels desats en localStorage.
+  
+  // 2. Si ja s'han tret tots els productes es mostra el missatge a sota avisant:
