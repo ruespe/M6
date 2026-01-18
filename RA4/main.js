@@ -1,146 +1,130 @@
-// Exercicis estructures de dades. Arrays
-// A partir del següent array d'objectes realitza els exercicis.
-
-const usuaris = [
-  {
-    nom: "Joan",
-    edat: 45,
-    professio: "mecànic",
-    sou: 1750,
-    idioma: ["espanyol"],
-  },
-  {
-    nom: "Pere",
-    edat: 57,
-    professio: "administratiu",
-    sou: 1860,
-    idioma: ["espanyol", "catala", "francès"],
-  },
-  {
-    nom: "Laia",
-    edat: 24,
-    professio: "imformatica",
-    sou: 1500,
-    idioma: ["espanyol", "catala", "anglès", "francès"],
-  },
-  {
-    nom: "Joana",
-    edat: 88,
-    professio: "jubilada",
-    sou: 480,
-    idioma: ["catala"],
-  },
-  { nom: "Mark", edat: 71, professio: "jubilat", sou: 650, idioma: ["anglès"] },
-  {
-    nom: "Josep",
-    edat: 21,
-    professio: "estudiant",
-    sou: 0,
-    idioma: ["espanyol", "catala", "anglès"],
-  },
-  {
-    nom: "Maria",
-    edat: 19,
-    professio: "estudiant",
-    sou: 0,
-    idioma: ["espanyol", "catala", "anglès", "francès"],
-  },
-  {
-    nom: "Eva",
-    edat: 24,
-    professio: "periodista",
-    sou: 2750,
-    idioma: ["espanyol", "catala", "italià", "francès"],
-  },
-  {
-    nom: "Mireia",
-    edat: 36,
-    professio: "perruquera",
-    sou: 1240,
-    idioma: ["espanyol", "catala"],
-  },
-  {
-    nom: "Esteve",
-    edat: 54,
-    professio: "dentista",
-    sou: 4507,
-    idioma: ["espanyol", "francès"],
-  },
-  {
-    nom: "Joaquim",
-    edat: 62,
-    professio: "jubilat",
-    sou: 1100,
-    idioma: ["espanyol", "catala"],
-  },
-  {
-    nom: "Ernest",
-    edat: 14,
-    professio: "estudiant",
-    sou: 0,
-    idioma: ["catala", "anglès"],
-  },
-  {
-    nom: "Eric",
-    edat: 28,
-    professio: "disenyador",
-    sou: 850,
-    idioma: ["espanyol", "catala", "anglès", "alemany"],
-  },
-  {
-    nom: "Maiol",
-    edat: 20,
-    professio: "estudiant",
-    sou: 0,
-    idioma: ["espanyol", "catala"],
-  },
-  {
-    nom: "Carles",
-    edat: 18,
-    professio: "estudiant",
-    sou: 0,
-    idioma: ["espanyol"],
-  },
-  {
-    nom: "Antoni",
-    edat: 32,
-    professio: "metge",
-    sou: 7800,
-    idioma: ["espanyol", "catala", "anglès"],
-  },
-];
-// usuaris.forEach(objeto => {
-//     let sueldo = objeto.sou;
-//     if(sueldo<1000){
-//         subida1 = sueldo *  0.02
-//     }
-//     if(sueldo>=1000){
-//         subida2 = sueldo * 0.017
-//     }
-// });
-
-let sueldosActualizados = usuaris.map(function(usuari){
-   let sueldo = usuari.sou;
-    if(sueldo<1000){
-        subida1 = sueldo *  0.02
+// 1. A partir del següent Object realitza els exercicis.
+const producte = {
+    S124234G: {
+        Descripcio: "Samarreta",
+        preu: 45,
+        colors: ["blau", "negre", "blanc"],
+        stock: {
+            "M": { "blau": 5, "negre": 10, "blanc": 7 },
+            "L": { "blau": 2, "negre": 5, "blanc": 1 },
+            "XL": { "blau": 4, "negre": 7, "blanc": 0 }
+        }
+    },
+    P785745Y: {
+        Descripcio: "Pantaló",
+        preu: 84,
+        colors: ["blau", "negre"],
+        stock: {
+            "M": { "blau": 5, "negre": 10 },
+            "L": { "blau": 2, "negre": 5 },
+            "XL": { "blau": 4, "negre": 7 }
+        }
+    },
+    A234578W: {
+        Descripcio: "Abric",
+        preu: 129,
+        colors: ["blau", "verd"],
+        stock: {
+            "M": { "blau": 1, "verd": 0 },
+            "L": { "blau": 7, "verd": 15 },
+            "XL": { "blau": 4, "verd": 3 }
+        }
     }
-    if(sueldo>=1000){
-        subida2 = sueldo * 0.017
-     }
+};
+// Recupera la informació següent:
+// 1. En quants colors està disponible l’article S124234G.
+let coloresDisponibles = producte.S124234G.colors.length;
+console.log("Colores disponibles del artículo S124234G:", coloresDisponibles);
 
-console.log(subida1)
-});
-// 1. Crea un nou amb el sou augmentat en un 2% si el sou és menor de 1000 i en un 1.7% si és igual o més
-// gran. Utilitza map().
+// 2. El nombre de samarretes de color blanc de la talla M de l'article S124234G.
+let samarretesBlancasM = producte.S124234G.stock.M.blanc;
+console.log("Samarretas blancas talla M:", samarretesBlancasM);
 
-// 2. Retorna els items amb un sou entre 500 i 1500 ambdós inclosos. Utilitza filter().
+// 3. La suma de les unitats de la talla L de color blau dels tres articles.
+let sumaLBlau = producte.S124234G.stock.L.blau + producte.P785745Y.stock.L.blau + producte.A234578W.stock.L.blau;
+console.log("Suma unidades talla L azul:", sumaLBlau);
 
-// 3. Utilitzant every() i some():
-// 1. Mostra un missatge que indiqui si tots els usuaris són majors d’edat o no ho són.
-// 2. Mostra un missatge que indiqui si hi han usuaris que tenen 65 anys o més.
+// 4. La suma de les unitats de totes les talles de color blau dels tres articles.
+let sumaTotBlau = 0;
+for (let codi in producte) {
+    for (let talla in producte[codi].stock) {
+        if (producte[codi].stock[talla].blau !== undefined) {
+            sumaTotBlau += producte[codi].stock[talla].blau;
+        }
+    }
+}
+console.log("Suma total de unidades azules:", sumaTotBlau);
 
-// 4. Retorna el valor de la suma total del sou de tots els usuaris. Utilitza reduce().
+// 2. Crea el mètode nomSencer() que retorni el nom i cognom de l'objecte client.
+// Defineix el mètode amb:
+// 1. Una funció estàndard.
+// 2. Una funció de fletxa.
+// Explica quina diferècia hi ha.
+const nom = "Pere";
+const cognom = "Garcia";
 
-// 5. Mitjançant splice() a l’array usuaris:
-// 1. Insereix dos elements nous a partir de la posició 7.
-// 2. Extreu els elements de les posicions 3 a 5 (ambdós inclosos) eliminant-los de l’array original i desant-los en un de nou.
+// 1. Con función estándar:
+const client = {
+    nom: 'Ramon',
+    cognom: 'Llull',
+    naixement: '1232',
+    nomSencer: function() {
+        return this.nom + " " + this.cognom;
+    }
+};
+console.log("Función estándar:", client.nomSencer());
+
+// 2. Con función flecha:
+const client2 = {
+    nom: 'Ramon',
+    cognom: 'Llull',
+    naixement: '1232',
+    nomSencer: () => {
+        return nom + " " + cognom; // Usa las variables globales
+    }
+};
+console.log("Función flecha:", client2.nomSencer());
+
+/* DIFERENCIA EXPLICADA:
+   Cuando usamos una función normal (estándar), la palabra 'this' se refiere al objeto donde está la función. Por eso client.nomSencer() devuelve "Ramon Llull" porque 'this' apunta a las propiedades del objeto client.
+   Pero las funciones flecha no tienen su propio 'this', es como si heredaran el contexto de donde fueron creadas.Por eso client2.nomSencer() devuelve "Pere Garcia" porque toma las variables nom y cognom que están
+   definidas fuera del objeto, en la parte de arriba del código.
+   */
+// 3. Donat aquest objecte:
+// Defineix el la funció de callback de forEach amb:
+// 1. Una funció estàndard.
+// 2. Una funció de fletxa.
+// Explica quina diferència hi ha.
+
+// 1. Con función estándar (requiere guardar referencia a 'this'):
+const cotxes = {
+    marques: ["Maserati", "Ferrari", "BMW"],
+    categoria: "Esportiu",
+    missatge: function () {
+        let self = this; // Necesario guardar referencia
+        this.marques.forEach(function(marca) {
+            console.log(marca + " es un " + self.categoria);
+        });
+    }
+}
+cotxes.missatge();
+
+// 2. Con función flecha (más simple, hereda 'this' automáticamente):
+const cotxes2 = {
+    marques: ["Maserati", "Ferrari", "BMW"],
+    categoria: "Esportiu",
+    missatge: function () {
+        this.marques.forEach((marca) => {
+            console.log(marca + " es un " + this.categoria);
+        });
+    }
+}
+cotxes2.missatge();
+
+/* DIFERENCIA EXPLICADA:
+   En el primer caso (cotxes), cuando usamos una función normal dentro del forEach, el 'this' se pierde.
+   Ya no apunta al objeto cotxes, sino a otra cosa. Por eso tenemos que hacer un truco: guardar 'this'
+   en una variable (self) antes de entrar al forEach, para poder usarla dentro.
+   En el segundo caso (cotxes2), usamos una función flecha dentro del forEach. Las funciones flecha son
+  son mejores y automáticamente mantienen el 'this' del objeto padre (cotxes2). No necesitamos guardar nada en variables adicionales.
+*/
