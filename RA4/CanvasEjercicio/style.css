@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  padding: 20px;
+  background-color: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+}
+
+#container {
+  background-color: black;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+#canvas {
+  display: block;
+  border: 10px solid #00ff00;
+  background-color: beige;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+
+#thumbs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px;
+  background-color: #3a3a3a;
+  border-radius: 5px;
+}
+
+#thumbs img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 3px solid transparent;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+#thumbs img:hover {
+  border-color: #00ff00;
+  transform: scale(1.1);
+}
+
+#thumbs img.active {
+  border-color: #00ff00;
+  box-shadow: 0 0 10px #00ff00;
+}
