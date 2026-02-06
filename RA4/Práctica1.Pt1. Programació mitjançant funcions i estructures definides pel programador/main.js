@@ -189,8 +189,11 @@ enviar.addEventListener("click", () => {
 // 4. La mida del canvas s'ajusta a la mida de la imatge més 10px per cada costat.
 
 const canvas = document.getElementById("canvas");
+const canvas2 = document.getElementById("canvas2")
 const ctx = canvas.getContext("2d");
 const thumbsContainer = document.getElementById("thumbs");
+const buttons = document.getElementById("buttons");
+
 
 // Array con las rutas de las imágenes
 const imagenes = [
@@ -213,23 +216,24 @@ imagenes.forEach((src, index) => {
 });
 
 // Función para cargar imagen en el canvas
-function cargarImagenEnCanvas(src) {
-  const img = new Image();
-  img.onload = function () {
-    // Ajustar el tamaño del canvas a la imagen + 10px por cada lado
-    canvas.width = img.width + 20;
-    canvas.height = img.height + 20;
+// function cargarImagenEnCanvas(src) {
+//   const img = new Image();
+//   img.onload = function () {
+//      Ajustar el tamaño del canvas a la imagen + 10px por cada lado
+//     canvas.width = img.width + 20;
+//     canvas.height = img.height + 20;
 
-    // Limpiar el canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+//      Limpiar el canvas
+//     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Dibujar la imagen centrada (con 10px de margen)
-    ctx.drawImage(img, 10, 10);
-  };
-  img.src = src;
-}
+//      Dibujar la imagen centrada (con 10px de margen)
+//     ctx.drawImage(img, 10, 10);
+//   };
+//   img.src = src;
+// }
 
 // Delegación de eventos: un solo listener en el contenedor
+
 thumbsContainer.addEventListener("click", (e) => {
   if (e.target.tagName === "IMG") {
     // Remover clase active de todas las imágenes
@@ -245,11 +249,21 @@ thumbsContainer.addEventListener("click", (e) => {
   }
 });
 
+buttons.addEventListener("click", (e) => {
+  if(e.target.tagName === "BUTTON"){
+    canvas2.style.display = '';
+    cargarImagenEnCanvas(e.target.src);
+  }
+})
+
 // Cargar la primera imagen al iniciar
 cargarImagenEnCanvas(imagenes[0]);
 
-// import * as Canvas from './Canvas.js'
-// import * as Filtre from './Filtre.js'
 
 
+<<<<<<< HEAD
 >>>>>>> 1d6fa85 (a)
+=======
+import * as Canvas from "./modules/canvas.js";
+import * as Filtre from "./modules/Filtre.js";
+>>>>>>> b43c46a (ha sido duro)
