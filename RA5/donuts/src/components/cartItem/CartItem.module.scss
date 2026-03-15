@@ -1,0 +1,49 @@
+.item {
+  list-style: none;
+  padding: 8px 0;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+
+  strong {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+}
+
+.price {
+  font-weight: bold;
+  color: white;
+}
+
+.details {
+  color: #aaa;
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+}
+
+.units {
+  font-size: 0.8rem;
+  color: #ccc;
+  margin: 0 0 6px;
+}
+
+.remove {
+  background: none;
+  border: none;
+  color: #e85d04;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

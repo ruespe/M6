@@ -1,43 +1,47 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<script src="main.js"></script>
-<input type="text"><input type="number">
-<button>Enviar al Console</button>
-</body>
-</html>
-=======
 <!doctype html>
-<html lang="en">
+<html lang="ca">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Travesaño</title>
+    <title>Editor de Filtres d'Imatge</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <h1>Editor de Filtres d'Imatge</h1>
     <div class="container">
-      <div id="buttons">
-        <button class="button">Aclarir/enfos</button>
-        <button class="button">Blanc i negre</button>
-        <button class="button">Negatiu</button>
-        <button class="button">Mirall</button>
-        <button class="button">Netejar</button>
-        <button class="button">Desar</button>
+      <div id="filtres">
+        <h3>Filtres disponibles</h3>
+        <button class="btn-filtre" data-filtre="enfosquir">Aclarir / Enfosquir</button>
+        <button class="btn-filtre" data-filtre="grisos">Blanc i negre</button>
+        <button class="btn-filtre" data-filtre="negatiu">Negatiu</button>
+        <button class="btn-filtre" data-filtre="mirall">Mirall</button>
+        <button class="btn-filtre" data-filtre="sepia">Sepia</button>
+        <button class="btn-filtre" data-filtre="pixelat">Pixelat</button>
+
+        <div id="rangeContainer">
+          <label for="rangeValor">Intensitat: <span id="rangeLabel">0</span></label>
+          <input type="range" id="rangeValor" min="-100" max="100" value="0" />
+        </div>
+
+        <hr />
+        <button class="btn-accio" id="btnNetejar">Netejar filtre</button>
+        <button class="btn-accio" id="btnDesar">Desar imatge</button>
       </div>
+
       <div id="containerCanvas">
-      <canvas id="canvas"></canvas>
-      <canvas id="canvas2" style="display: none;"></canvas>
+        <div class="canvas-wrapper">
+          <h3>Original</h3>
+          <canvas id="canvas"></canvas>
+        </div>
+        <div class="canvas-wrapper">
+          <h3>Filtre aplicat</h3>
+          <canvas id="canvas2"></canvas>
+        </div>
       </div>
-      <div id="thumbs"></div>
     </div>
+
+    <div id="thumbs"></div>
+
     <script type="module" src="main.js"></script>
   </body>
 </html>
->>>>>>> 1d6fa85 (a)

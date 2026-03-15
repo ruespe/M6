@@ -1,0 +1,20 @@
+:root {
+  --color-primary: #e85d04;
+  --color-primary-dark: #c94e00;
+  --color-bg-dark: #1a1a1a;
+  --color-bg-card: #ffffff;
+  --color-text: #222222;
+  --color-text-light: #ffffff;
+  --color-text-muted: #555555;
+  --color-text-subtle: #aaaaaa;
+  --color-border: #e0e0e0;
+  --color-divider: #333333;
+  --font-family: system-ui, -apple-system, sans-serif;
+  --border-radius-sm: 6px;
+  --border-radius-md: 12px;
+  --transition-speed: 0.2s;
+  --offcanvas-width: 360px;
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-card-hover: 0 6px 16px rgba(0, 0, 0, 0.15);
+  --shadow-panel: -4px 0 24px rgba(0, 0, 0, 0.4);
+}

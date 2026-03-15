@@ -1,0 +1,6 @@
+export { default as Button } from './Button/Button'
+export { default as Image } from './Image/Image'
+export { default as Input } from './Input/Input'
+export { default as Label } from './Label/Label'
+export { default as Option } from './Option/Option'
+export { default as Select } from './Select/Select'
